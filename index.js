@@ -1,4 +1,5 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 let persons = [
@@ -25,6 +26,10 @@ let persons = [
 ]
 
 app.use(express.json())
+morgan.token('body', req => {
+    return JSON.stringify(req.body)
+  })
+app.use(morgan(':method :url - :response-time ms :body'))
 
 app.get('/info', (request, response) => {
     const welcome = 'Phonebook has info for ' + persons.length + ' people'
