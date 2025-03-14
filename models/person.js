@@ -7,7 +7,7 @@ const url = process.env.MONGODB_URI
 console.log('connecting to', url)
 mongoose.connect(url)
 
-  .then(result => {
+  .then(() => {
     console.log('connected to MongoDB')
   })
   .catch(error => {
@@ -16,7 +16,7 @@ mongoose.connect(url)
 
 function validateNumber(number) {
   const parts = number.split('-')
-  if (parts.length != 2) {
+  if (parts.length !== 2) {
     return false
   }
   if (parts[0].length < 2 || parts[0].length > 3) {
